@@ -195,7 +195,7 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="email1">{formErrorsName.Name}</p>
+              <p className="error_msg">{formErrorsName.Name}</p>
             </div>
             <div className="input_container">
               <input
@@ -209,7 +209,7 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="email1">{formErrorsRoll.Rollno}</p>
+              <p className="error_msg">{formErrorsRoll.Rollno}</p>
             </div>
             <div className="input_container">
               <input
@@ -223,7 +223,7 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="email1">{formErrorsContactno.Contactno}</p>
+              <p className="error_msg">{formErrorsContactno.Contactno}</p>
             </div>
             <div className="input_container">
               <input
@@ -237,11 +237,11 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="email1">{formErrorsEmail.Email}</p>
+              <p className="error_msg">{formErrorsEmail.Email}</p>
             </div>
             <div className="input_container">
               <select
-                className=" input_field"
+                className=" input_field select"
                 id="Branch"
                 name="Branch"
                 required
@@ -266,7 +266,7 @@ function Reg() {
             </div>
             <div className="input_container">
               <select
-                className="input_field"
+                className="input_field select"
                 name="Gender"
                 value={Gender}
                 onChange={(e) => setGender(e.target.value)}
@@ -281,7 +281,7 @@ function Reg() {
             </div>
             <div className="input_container">
               <select
-                className="input_field "
+                className="input_field select"
                 name="Year"
                 value={Year}
                 onChange={(e) => setYear(e.target.value)}
@@ -299,7 +299,7 @@ function Reg() {
                   <span className="radio_text">Hosteler</span>
                   <input
                     type="radio"
-                    className="form-check-input bg-blue "
+                    className="form-check-input bg-blue select_box"
                     name="Residence"
                     required
                     value="Hosteler"
@@ -310,7 +310,7 @@ function Reg() {
                   <span className="radio_text">Day-Scholar</span>
                   <input
                     type="radio"
-                    className="form-check-input bg-blue "
+                    className="form-check-input bg-blue select_box"
                     name="Residence"
                     required
                     value="Day-Scholar"
