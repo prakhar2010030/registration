@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Reg.css";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 function Reg() {
   const [Name, setName] = useState("");
@@ -21,6 +24,8 @@ function Reg() {
   const [formErrorsRoll, setformErrorsRoll] = useState({});
   const [formErrorsContactno, setformErrorsContactno] = useState({});
   const [formErrorsBranch, setformErrorsBranch] = useState({});
+  const [formErrorsYear, setformErrorsYear] = useState({});
+  const [formErrorsGender, setformErrorsGender] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
 
@@ -31,7 +36,8 @@ function Reg() {
     }
   }, [
     formErrors,
-
+    formErrorsGender,
+    formErrorsYear,
     formErrorsBranch,
     formErrorsContactno,
     formErrorsRoll,
@@ -63,12 +69,26 @@ function Reg() {
     setformErrorsBranch(validateBranch(Branch));
   };
 
+
+  const handleFocusYear = (e) => {
+    setFocused(true);
+    setformErrorsYear(validateYear(Year));
+  };
+
+  const handleFocusGender = (e) => {
+    setFocused(true);
+    setformErrorsGender(validateGender(Gender));
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     setformErrorsName(validateName(Name));
     setFormErrorsEmail(validateEmail(Email));
     setformErrorsContactno(validateContactno(Contactno));
     setformErrorsRoll(validateRoll(Rollno));
+    setformErrorsBranch(validateBranch(Branch));
+    setformErrorsYear(validateYear(Year));
+    setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
 
     if (
@@ -83,7 +103,7 @@ function Reg() {
     ) {
       const newEntry = {
         Name: Name,
-        Rollno: Number(Rollno),
+        Rollno: String(Rollno),
         Contactno: Number(Contactno),
         Email: Email,
         Branch: Branch,
@@ -100,9 +120,14 @@ function Reg() {
         )
         .then((res) => {
           console.log(res.data);
+          if(res.status===2000)
+          {
+            Navigate("/confirm");
+          }
         })
         .catch((err) => {
           console.log(err);
+          window.alert("User already Exists");
         });
     } else {
       console.log("Enter Data in all Fields");
@@ -125,23 +150,32 @@ function Reg() {
 
   const validateName = (value) => {
     const errors = {};
-    let regex = new RegExp("^[A-Za-z ]{7,29}$");
+    let regex = new RegExp("^[A-Za-z]+$");
+    let regexi = new RegExp("^[A-Za-z]{3,29}$");
     if (!value) {
-      errors.Name = "Name is required!";
+      errors.Name = "name is required!";
     } else if (!regex.test(value)) {
       errors.Name = "Name should only include alphabets";
-    } else {
+    } 
+    else if (!regexi.test(value)) {
+      errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
+    } 
+    else {
       checkStatusAll = true;
     }
     return errors;
   };
   const validateRoll = (value) => {
     const errors = {};
-    let regex = new RegExp("[0-9]");
+    let regex = new RegExp("^[0-9D-d]+$");
+    let regexi = new RegExp("^[0-9D-d]{3,13}$");
     if (!value) {
       errors.Rollno = "Roll number is required!";
     } else if (!regex.test(value)) {
-      errors.Rollno = "Roll number should only be numeric";
+      errors.Rollno = "Roll number should be numeric or can contain a letter D";
+    }
+    else if (!regexi.test(value)) {
+      errors.Rollno = "Maximum length of roll number is 13 digits";
     } else {
       checkStatusAll = true;
     }
@@ -152,12 +186,17 @@ function Reg() {
 
   const validateContactno = (value) => {
     const errors = {};
-    let regex = new RegExp("^[0-9]{10}$");
+    let regex = new RegExp("^[0-9]$");
+    // let regexi = new RegExp("^[0-9]{10}$");
     if (!value) {
       errors.Contactno = "Contact  number is required!";
     } else if (!regex.test(value)) {
-      errors.Contactno = "Contact  number should only be numeric";
-    } else {
+      errors.Contactno = "Contact  number should only be numeric and of 10 digits";
+    } 
+    // else if (!regexi.test(value)) {
+    //   errors.Contactno = "Contact  number should be of 10 digits";
+    // }
+     else {
       checkStatusAll = true;
     }
     return errors;
@@ -172,6 +211,29 @@ function Reg() {
     }
     return errors;
   };
+
+  const validateGender = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.Gender = "Gender is required!";
+    } else {
+      checkStatusAll = true;
+    }
+    return errors;
+  };
+
+  const validateYear = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.Year = "Year is Required!";
+    } else {
+      checkStatusAll = true;
+    }
+    return errors;
+  };
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
 
   return (
     <>
@@ -194,8 +256,7 @@ function Reg() {
                 onBlur={handleFocusName}
                 focused={focused.toString()}
               />
-
-              <p className="error_msg">{formErrorsName.Name}</p>
+              <span className="error_msg">{formErrorsName.Name}</span>
             </div>
             <div className="input_container">
               <input
@@ -209,7 +270,7 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="error_msg">{formErrorsRoll.Rollno}</p>
+              <span className="error_msg">{formErrorsRoll.Rollno}</span>
             </div>
             <div className="input_container">
               <input
@@ -223,7 +284,7 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="error_msg">{formErrorsContactno.Contactno}</p>
+              <span className="error_msg">{formErrorsContactno.Contactno}</span>
             </div>
             <div className="input_container">
               <input
@@ -237,21 +298,19 @@ function Reg() {
                 focused={focused.toString()}
               />
 
-              <p className="error_msg">{formErrorsEmail.Email}</p>
+              <span className="error_msg">{formErrorsEmail.Email}</span>
             </div>
             <div className="input_container">
               <select
-                className=" input_field select"
+                className=" input_field"
                 id="Branch"
                 name="Branch"
-                required
                 value={Branch}
                 onChange={(e) => setBranch(e.target.value)}
                 onBlur={handleFocusBranch}
                 focused={focused.toString()}
-                placeholder="Branch"
               >
-                <option value="null">Branch</option>
+                <option value="NULL">Branch</option>
                 <option>CSE</option>
                 <option>CSE(DS)</option>
                 <option>CSE(AI&ML)</option>
@@ -262,36 +321,43 @@ function Reg() {
                 <option>EN</option>
                 <option>ME</option>
                 <option>CIVIL</option>
+               
               </select>
+
+              <span className="error_msg">{formErrorsBranch.Branch}</span>
             </div>
             <div className="input_container">
               <select
-                className="input_field select"
+                className="input_field"
                 name="Gender"
                 value={Gender}
                 onChange={(e) => setGender(e.target.value)}
-                onBlur={handleFocusName}
+                onBlur={handleFocusGender}
                 focused={focused.toString()}
               >
-                <option>Gender</option>
+                <option value="NULL">Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="other">Other</option>
               </select>
+              
+              <span className="error_msg">{formErrorsGender.Gender}</span>
             </div>
             <div className="input_container">
               <select
-                className="input_field select"
+                className="input_field "
                 name="Year"
                 value={Year}
                 onChange={(e) => setYear(e.target.value)}
-                onBlur={handleFocusName}
+                onBlur={handleFocusYear}
                 focused={focused.toString()}
               >
-                <option>Year</option>
-                <option value="1">1</option>
+                <option value="NULL">Year</option>
+                {/* <option value="1">1</option> */}
                 <option value="2">2</option>
               </select>
+              
+              <span className="error_msg">{formErrorsYear.Year}</span>
             </div>
             <div className="d-flex justify-content-center">
               <div className="justify">
@@ -299,7 +365,7 @@ function Reg() {
                   <span className="radio_text">Hosteler</span>
                   <input
                     type="radio"
-                    className="form-check-input bg-blue select_box"
+                    className="form-check-input bg-blue "
                     name="Residence"
                     required
                     value="Hosteler"
@@ -310,7 +376,7 @@ function Reg() {
                   <span className="radio_text">Day-Scholar</span>
                   <input
                     type="radio"
-                    className="form-check-input bg-blue select_box"
+                    className="form-check-input bg-blue "
                     name="Residence"
                     required
                     value="Day-Scholar"
@@ -319,6 +385,14 @@ function Reg() {
                 </div>
               </div>
             </div>
+            <div className="captcha">
+            <ReCAPTCHA
+            className="field"
+    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
+    onChange={onChange}
+  />
+            </div>
+  
             <div className="input_container">
               <button
                 type="button"
