@@ -278,16 +278,16 @@ color: #FFFCFC;
     background-image: url(../../../public/assets/Photos/bg_m.svg);
 /* background-size:100% 65%; */
 background-size:contain;
-object-fit: fill;
-/* position: relative; */
+/* object-fit: fill; */
+position: relative;
 /* display: block; */
 /* overflow: scroll; */
 /* height: 65vh; */
   }
   
   .image_right{
-    /* position:absolute;
-    top:75%; */
+    position:absolute;
+    top:75%;
   }
   .input_container{
     margin:1%;
@@ -318,7 +318,7 @@ object-fit: fill;
 }
 @media (max-width:391px){
   .image_left{
-    height:53vh
+    /* height:53vh */
   }
 }
 
