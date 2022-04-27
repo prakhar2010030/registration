@@ -261,7 +261,24 @@ function Reg() {
     return errors;
   };
   function onChange(value) {
+    const captcha_value = value;
     console.log("Captcha value:", value);
+    axios
+    .post(
+     "https://nameless-citadel-14148.herokuapp.com/api/users/captcha",
+      captcha_value
+    )
+    .then((res) => {
+      console.log(res.data);
+      // if(res.status === 200)
+      // {
+      //   Navigate("/confirm");
+      // }
+    })
+    .catch((err) => {
+      console.log(err);
+      // window.alert("user already registered!!!");
+    });
   }
 
   return (
@@ -417,7 +434,7 @@ function Reg() {
             <div className="captcha input_container">
             <ReCAPTCHA
             className="field"
-    sitekey="6LcqyacfAAAAACR9ow-AsfTmnRZdHy9N_jHibIEH" 
+    sitekey="6LdoI6gfAAAAAPuP_oBrSwgLgzibVEIcjBNC4H1t" 
      onChange={onChange}
   />
             </div>
