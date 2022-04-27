@@ -264,7 +264,7 @@ function Reg() {
     return errors;
   };
   function onChange(value) {
-    const captcha_value = value;
+    // const captcha_value = value;
     // console.log(captcha_value);
     if(value){
       flag = 1;
