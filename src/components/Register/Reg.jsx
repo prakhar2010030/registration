@@ -262,7 +262,7 @@ function Reg() {
   };
   function onChange(value) {
     const captcha_value = value;
-    console.log("Captcha value:", value);
+    // console.log("Captcha value:", value);
     axios
     .post(
      "https://nameless-citadel-14148.herokuapp.com/api/users/captcha",
