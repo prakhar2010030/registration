@@ -10,7 +10,7 @@
   justify-content: center;
   overflow: hidden;
   /* margin-top: 0.7%; */
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 
@@ -28,7 +28,7 @@ background-size:100% 100%;
   background-image: url(../../../public/assets/Photos/bg3.svg);
 background-repeat: no-repeat;
 background-size:100% 100%;
-border: 2px solid blue;
+/* border: 2px solid blue; */
 /* overflow: hidden; */
 display: flex;
 flex-direction: column;
