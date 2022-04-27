@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  visibility: inherit;
   /* margin-top: 0.7%; */
   /* border: 2px solid red; */
 }
@@ -291,7 +292,6 @@ position: relative;
   }
   .input_container{
     margin:1%;
-    /* border: 1px solid red; */
   }
   .error_msg{
     width: 80%;
@@ -303,7 +303,6 @@ position: relative;
   .left_heading{
     margin-top: 1%;
     font-size:2rem ;
-    /* display: none; */
 
   }
   .radio_text{
@@ -312,26 +311,18 @@ position: relative;
   .input_field,.justify{
     font-size: 1.3rem;
   }
-  /* .input{
-    margin-bottom: 10%;
-  } */
+ 
 }
-@media (max-width:391px){
-  .image_left{
-    /* height:53vh */
-  }
-}
+
 
 @media (max-width:370px){
   
   .image_left{
-/* position: relative; */
-/* background-size: 100% 60%; */
 background-size: contain;
   }
   .image_right{
-    /* position:absolute;
-    top:60%; */
+    position:absolute;
+    top:60%;
   }
   
   .left_heading{
@@ -342,9 +333,7 @@ background-size: contain;
   }  .justify,.error_msg,.input_field{
     width: 73%;
   }
-  /* .input{
-    margin-bottom: 10%;
-  } */
+ 
  
 }
 
@@ -354,11 +343,8 @@ background-size: contain;
   .error_msg,.justify,.input_field{
     width: 75%;
   }
-  /* .input{
-    border: 3px solid black;
-  } */
+  /*  */
   .input_container{
-    /* border: 3px solid black; */
     margin: 3%;
 
   }
@@ -373,7 +359,6 @@ background-size: contain;
 @media (max-width:339px)
 {
   .input_container{
-    /* border: 3px solid black; */
     margin: 2%;
 
   }
@@ -391,7 +376,6 @@ background-size: contain;
     font-size: 1rem;
   }
   .input_container{
-    /* border: 3px solid black; */
     margin: 2%;
 
   }
@@ -405,11 +389,7 @@ background-size: contain;
   .justify,.error_msg,.input_field{
 width:84%;
   }
-  /* .captcha{
-    width: 70%;
-    width: ;
-
-  } */
+ 
 }
 @media (max-width:290px)
 {

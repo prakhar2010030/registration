@@ -17,6 +17,7 @@ function Reg() {
   const [Residence, setResidence] = useState("");
   const Navigate = useNavigate();
 
+  var flag = 0;
   var checkStatus = false;
   var checkStatusAll = false;
   const [formErrors, setFormErrors] = useState({});
@@ -135,7 +136,9 @@ function Reg() {
           console.log(res.data);
           if(res.status === 200)
           {
-            Navigate("/confirm");
+            if(flag === 1){
+              Navigate("/confirm");
+            }
           }
         })
         .catch((err) => {
@@ -143,11 +146,11 @@ function Reg() {
           window.alert("user already registered!!!");
         });
 
-      axios
-        .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
-        .then((resp) => {
-          console.log(resp.data);
-        })
+      // axios
+      //   .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
+      //   .then((resp) => {
+      //     console.log(resp.data);
+      //   })
 
     } 
     else {
@@ -170,19 +173,19 @@ function Reg() {
     }
     return errors;
   };
-
   const validateName = (value) => {
     const errors = {};
-    let regex = new RegExp("^[A-Za-z]+$");
-    let regexi = new RegExp("^[A-Za-z]{3,29}$");
+    let regex = new RegExp("^[A-Za-z ]{3,29}$");
+    // let regexi = new RegExp("^[A-Za-z]{3,29}$");
     if (!value) {
       errors.Name = "Name is required!";
-    } else if (!regex.test(value)) {
+    }
+     else if (!regex.test(value)) {
       errors.Name = "Name should only include alphabets";
     } 
-    else if (!regexi.test(value)) {
-      errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
-    } 
+    // else if (!regexi.test(value)) {
+    //   errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
+    // } 
     else
      {
       checkStatusAll = true;
@@ -262,23 +265,29 @@ function Reg() {
   };
   function onChange(value) {
     const captcha_value = value;
-    // console.log("Captcha value:", value);
-    axios
-    .post(
-     "https://nameless-citadel-14148.herokuapp.com/api/users/captcha",
-      captcha_value
-    )
-    .then((res) => {
-      console.log(res.data);
-      // if(res.status === 200)
-      // {
-      //   Navigate("/confirm");
-      // }
-    })
-    .catch((err) => {
-      console.log(err);
-      // window.alert("user already registered!!!");
-    });
+    // console.log(captcha_value);
+    if(value){
+      flag = 1;
+    }
+
+    
+    // // console.log("Captcha value:", value);
+    // axios
+    // .post(
+    //  "https://nameless-citadel-14148.herokuapp.com/api/users/captcha",
+    //   captcha_value
+    // )
+    // .then((res) => {
+    //   console.log(res.data);
+    //   // if(res.status === 200)
+    //   // {
+    //   //   Navigate("/confirm");
+    //   // }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   // window.alert("user already registered!!!");
+    // });
   }
 
   return (
@@ -434,7 +443,7 @@ function Reg() {
             <div className="captcha input_container">
             <ReCAPTCHA
             className="field"
-    sitekey="6LdoI6gfAAAAAPuP_oBrSwgLgzibVEIcjBNC4H1t" 
+    sitekey="6LfUUagfAAAAAI4U5j4Vf7hWcuRflo8B5gXhTzuR" 
      onChange={onChange}
   />
             </div>
