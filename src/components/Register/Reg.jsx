@@ -96,6 +96,59 @@ function Reg() {
     // setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
 
+
+
+    //  ###################################################
+
+    // const newEntry = {
+    //   Name: Name,
+    //   Rollno: String(Rollno),
+    //   Contactno: Number(Contactno),
+    //   Email: Email,
+    //   Branch: Branch,
+    //   Year: Number(Year),
+    //   Gender: Gender,
+    //   Residence: Residence,
+    //   // ReCAPTCHA
+    // };
+    // // if(checkStatus===true && checkStatusAll===true)
+
+    
+
+    // // {console.log(newEntry);}
+    // // const token = await reRef.current.executeAsync();
+
+
+
+    // axios
+    //   .post(
+    //     "https://nameless-citadel-14148.herokuapp.com/api/users/register",
+    //     newEntry
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     if(res.status === 200)
+    //     {
+
+    //       if(flag === 1){
+    //         Navigate("/confirm");
+    //       }
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     window.alert("user already registered!!!");
+    //   });
+
+    // // axios
+    // //   .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
+    // //   .then((resp) => {
+    // //     console.log(resp.data);
+    // //   })
+
+
+    // ####################################################
+    
     if (
       Name &&
       Rollno &&
@@ -116,7 +169,7 @@ function Reg() {
         Year: Number(Year),
         Gender: Gender,
         Residence: Residence,
-        ReCAPTCHA
+        // ReCAPTCHA
       };
       if(checkStatus===true && checkStatusAll===true)
 
@@ -136,6 +189,7 @@ function Reg() {
           console.log(res.data);
           if(res.status === 200)
           {
+
             if(flag === 1){
               Navigate("/confirm");
             }
@@ -296,12 +350,13 @@ function Reg() {
         <div className="image_left"></div>
         <div className="image_right">
           <div className="heading">
-            <span className="left_heading">Hey!</span>
-            <span className="left_heading"> Get Yourself Registered</span>
+            <span className="left_heading hey">Hey!</span>
+            <span className="left_heading "> Get Yourself Registered</span>
           </div>
           <form className="input">
             <div className="input_container">
               <input
+              required = "required"
                 type="text"
                 className="input_field"
                 placeholder="Name"
