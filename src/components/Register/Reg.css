@@ -47,6 +47,7 @@ justify-content: center;
   font-weight: 600;
   font-size: 2.2rem;
   margin: 1%;
+  /* display: none; */
 
 }
 
@@ -277,10 +278,11 @@ color: #FFFCFC;
     background-image: url(../../../public/assets/Photos/bg_m.svg);
 /* background-size:100% 65%; */
 background-size:contain;
+object-fit: fill;
 /* position: relative; */
 /* display: block; */
 /* overflow: scroll; */
-height: 65vh;
+/* height: 65vh; */
   }
   
   .image_right{
@@ -301,6 +303,8 @@ height: 65vh;
   .left_heading{
     margin-top: 1%;
     font-size:2rem ;
+    /* display: none; */
+
   }
   .radio_text{
     text-align: left;
