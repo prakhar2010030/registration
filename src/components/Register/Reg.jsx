@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Reg.css";
-// import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+// import recaptcha from "react-google-recaptcha/lib/recaptcha";
 
 
 function Reg() {
@@ -15,6 +15,7 @@ function Reg() {
   const [Year, setYear] = useState("");
   const [Gender, setGender] = useState("");
   const [Residence, setResidence] = useState("");
+  const Navigate = useNavigate();
 
   var checkStatus = false;
   var checkStatusAll = false;
@@ -28,6 +29,7 @@ function Reg() {
   const [formErrorsGender, setformErrorsGender] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
+  // const reRef = useRef(null);
 
   useEffect(() => {
     // console.log(formErrors);
@@ -41,12 +43,14 @@ function Reg() {
     formErrorsBranch,
     formErrorsContactno,
     formErrorsRoll,
+    formErrorsEmail,
     isSubmit,
   ]);
 
   const handleFocusEmail = (e) => {
     setFocused(true);
     setFormErrorsEmail(validateEmail(Email));
+    setFormErrors(validateEmail(Email));
   };
 
   const handleFocusName = (e) => {
@@ -86,9 +90,9 @@ function Reg() {
     setFormErrorsEmail(validateEmail(Email));
     setformErrorsContactno(validateContactno(Contactno));
     setformErrorsRoll(validateRoll(Rollno));
-    setformErrorsBranch(validateBranch(Branch));
-    setformErrorsYear(validateYear(Year));
-    setformErrorsGender(validateGender(Gender));
+    // setformErrorsBranch(validateBranch(Branch));
+    // setformErrorsYear(validateYear(Year));
+    // setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
 
     if (
@@ -99,7 +103,8 @@ function Reg() {
       Branch &&
       Year &&
       Gender &&
-      Residence
+      Residence &&
+      ReCAPTCHA
     ) {
       const newEntry = {
         Name: Name,
@@ -110,9 +115,17 @@ function Reg() {
         Year: Number(Year),
         Gender: Gender,
         Residence: Residence,
+        ReCAPTCHA
       };
+      if(checkStatus===true && checkStatusAll===true)
 
-      console.log(newEntry);
+      
+
+      {console.log(newEntry);}
+      // const token = await reRef.current.executeAsync();
+
+
+
       axios
         .post(
           "https://nameless-citadel-14148.herokuapp.com/api/users/register",
@@ -120,16 +133,24 @@ function Reg() {
         )
         .then((res) => {
           console.log(res.data);
-          if(res.status===2000)
+          if(res.status === 200)
           {
             Navigate("/confirm");
           }
         })
         .catch((err) => {
           console.log(err);
-          window.alert("User already Exists");
+          window.alert("user already registered!!!");
         });
-    } else {
+
+      axios
+        .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
+        .then((resp) => {
+          console.log(resp.data);
+        })
+
+    } 
+    else {
       console.log("Enter Data in all Fields");
     }
   };
@@ -142,7 +163,9 @@ function Reg() {
       errors.Email = "Email is required!";
     } else if (!regex.test(value)) {
       errors.Email = "This is not a valid email format!";
-    } else {
+    } 
+    else
+     {
       checkStatus = true;
     }
     return errors;
@@ -153,14 +176,15 @@ function Reg() {
     let regex = new RegExp("^[A-Za-z]+$");
     let regexi = new RegExp("^[A-Za-z]{3,29}$");
     if (!value) {
-      errors.Name = "name is required!";
+      errors.Name = "Name is required!";
     } else if (!regex.test(value)) {
       errors.Name = "Name should only include alphabets";
     } 
     else if (!regexi.test(value)) {
       errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
     } 
-    else {
+    else
+     {
       checkStatusAll = true;
     }
     return errors;
@@ -176,7 +200,8 @@ function Reg() {
     }
     else if (!regexi.test(value)) {
       errors.Rollno = "Maximum length of roll number is 13 digits";
-    } else {
+    } else
+     {
       checkStatusAll = true;
     }
     return errors;
@@ -186,17 +211,18 @@ function Reg() {
 
   const validateContactno = (value) => {
     const errors = {};
-    let regex = new RegExp("^[0-9]$");
-    // let regexi = new RegExp("^[0-9]{10}$");
+    // let regex = new RegExp("^[0-9]$");
+    let regexi = new RegExp("^[0-9]{10}$");
     if (!value) {
       errors.Contactno = "Contact  number is required!";
-    } else if (!regex.test(value)) {
+    } else if (!regexi.test(value)) {
       errors.Contactno = "Contact  number should only be numeric and of 10 digits";
     } 
     // else if (!regexi.test(value)) {
     //   errors.Contactno = "Contact  number should be of 10 digits";
     // }
-     else {
+     else
+      {
       checkStatusAll = true;
     }
     return errors;
@@ -206,7 +232,8 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Branch = "Branch is required!";
-    } else {
+    }
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -216,7 +243,8 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Gender = "Gender is required!";
-    } else {
+    }
+     else {
       checkStatusAll = true;
     }
     return errors;
@@ -226,7 +254,8 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Year = "Year is Required!";
-    } else {
+    } 
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -359,7 +388,7 @@ function Reg() {
               
               <span className="error_msg">{formErrorsYear.Year}</span>
             </div>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center input_container">
               <div className="justify">
                 <div className="radio">
                   <span className="radio_text">Hosteler</span>
@@ -385,11 +414,11 @@ function Reg() {
                 </div>
               </div>
             </div>
-            <div className="captcha">
+            <div className="captcha input_container">
             <ReCAPTCHA
             className="field"
-    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
-    onChange={onChange}
+    sitekey="6LcqyacfAAAAACR9ow-AsfTmnRZdHy9N_jHibIEH" 
+     onChange={onChange}
   />
             </div>
   
