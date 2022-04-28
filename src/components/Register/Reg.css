@@ -143,6 +143,9 @@ color: #FFFCFC;
    display: flex;
    flex-direction: column;
  }
+ .input_field,.error_msg{
+   width: 76%;
+ }
  
 }
 @media screen and (max-width:1032px){

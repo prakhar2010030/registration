@@ -187,17 +187,18 @@ function Reg() {
         )
         .then((res) => {
           console.log(res.data);
-          if(res.status === 200)
-          {
-
-            if(flag === 1){
+          if (res.status === 200) {
+            if (flag === 1) {
               Navigate("/confirm");
+            } else {
+              window.alert("captcha Required!!!");
             }
           }
         })
         .catch((err) => {
           console.log(err);
-          window.alert("user already registered!!!");
+
+          window.alert("Invalid Credentials or user already exists!!!");
         });
 
       // axios
