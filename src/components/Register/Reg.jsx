@@ -469,13 +469,13 @@ function Reg() {
               
               <span className="error_msg">{formErrorsYear.Year}</span>
             </div>
-            <div className="d-flex justify-content-center input_container">
+            <div className=" input_container">
               <div className="justify">
                 <div className="radio">
                   <span className="radio_text">Hosteler</span>
                   <input
                     type="radio"
-                    className="form-check-input bg-blue "
+                    className="form-check-input bg-blue"
                     name="Residence"
                     required
                     value="Hosteler"
@@ -493,11 +493,11 @@ function Reg() {
                     onChange={(e) => setResidence(e.target.value)}
                   />
                 </div>
+                </div>
               </div>
-            </div>
-            <div className="captcha input_container">
+            <div className="input_container">
             <ReCAPTCHA
-            className="field"
+            className="captcha"
     sitekey="6LfUUagfAAAAAI4U5j4Vf7hWcuRflo8B5gXhTzuR" 
      onChange={onChange}
   />
