@@ -91,6 +91,7 @@ function Reg() {
     } else if (flag === 0) {
       window.alert("Captcha Required!!!");
     }
+    
   }
   const submit = async (e) => {
     e.preventDefault();
@@ -102,6 +103,7 @@ function Reg() {
     // setformErrorsYear(validateYear(Year));
     // setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
+    
 
     //  ###################################################
 
@@ -148,7 +150,7 @@ function Reg() {
     // //   })
 
     // ####################################################
-    console.log(flag);
+    // console.log(flag);
     if (
       Name &&
       Rollno &&
@@ -173,7 +175,7 @@ function Reg() {
         // ReCAPTCHA
       };
       if (checkStatus === true && checkStatusAll === true) {
-        console.log(newEntry);
+        // console.log(newEntry);
       }
       // const token = await reRef.current.executeAsync();
 
@@ -183,7 +185,7 @@ function Reg() {
           newEntry
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.status === 200) {
             if (flag === 1) {
               Navigate("/confirm");
@@ -203,11 +205,19 @@ function Reg() {
       //   .then((resp) => {
       //     console.log(resp.data);
       //   })
-    } else if (flag === 0) {
-      window.alert("Captcha Required!!!");
-    } else {
-      console.log("Enter Data in all Fields");
-    }
+    } else if ( !( Name &&
+      Rollno &&
+        Contactno &&
+        Email &&
+        Branch &&
+        Year &&
+        Gender &&
+        Residence) &&
+        flag === 0) {
+        window.alert("Enter Data in all Fields!!!");
+      } else if(flag===0) {
+        window.alert("Captcha Required!!!");
+      }
   };
 
   const validateEmail = (value) => {

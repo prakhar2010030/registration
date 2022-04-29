@@ -11,7 +11,12 @@ const Homepage = () => {
            Registration successful!!
          </span>
          <span className="paragraph">
-            For confirmation of your seat, please deposit the fee manually at the registration desks at Back Block Or CSIT Block
+           <br></br>
+           
+           <h3>
+           For confirmation of your seat, please deposit the fee manually at the registration desks at Back Block Or CSIT Block or Basic IT lab 
+             </h3> 
+             <h6>UPI ID-9696469589</h6>
          </span>
          <span className="success_image"></span>
        </div>
