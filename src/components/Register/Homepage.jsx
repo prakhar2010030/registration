@@ -3,29 +3,20 @@ import "./Homepage.css";
 const Homepage = () => {
   return (
     <>
-    <div className='cont'>
-
-    <div className='image_left'>
-
-    </div>
-    <div className='image_right'>
-      <div className='text'>
-        <h1>
-          Registration successfull !
-        </h1>
-
-      </div>
-        <h2 className='heading_home'>
-          <br></br>
-          For confirmation of your seat, please deposit the fee manually at the registration desks at Back Block Or CSIT Block
-        </h2>
-      <div className='image3'>
-      </div>  
-        {/* { <div className='image4'>
-
-        </div> } */}
-    </div>
-    </div>
+   <div className="container_successfull">
+     <div className="image_home_left"></div>
+     <div className="image_home_right">
+       <div className='registration'>
+         <span className="text">
+           Registration successful!!
+         </span>
+         <span className="paragraph">
+            For confirmation of your seat, please deposit the fee manually at the registration desks at Back Block Or CSIT Block
+         </span>
+         <span className="success_image"></span>
+       </div>
+     </div>
+   </div>
 
     </>
   )
