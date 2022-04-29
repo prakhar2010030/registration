@@ -71,7 +71,7 @@
   }
   .image_home_left{
     background-image: url(../../../public/assets/Photos/bg_m.svg);
-    background-size: contain;
+    background-size: 100% 65%;
     background-repeat: no-repeat;
     position: relative;
   }
@@ -85,6 +85,12 @@
 @media screen and (max-width:733px){
   html{
     font-size: 12px;
+  }
+  
+}
+@media screen and (max-width:314px){
+  html{
+font-size: 10px;
   }
   
 }
