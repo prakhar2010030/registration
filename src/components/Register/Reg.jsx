@@ -267,14 +267,14 @@ function Reg() {
   const validateRoll = (value) => {
     const errors = {};
     let regex = new RegExp("^[0-9D-d]+$");
-    let regexi = new RegExp("^[0-9D-d]{3,13}$");
+    let regexi = new RegExp("^[0-9D-d]{7,7}$");
     if (!value) {
-      errors.Rollno = "Roll number is required!";
+      errors.Rollno = "Student number is required!";
     } else if (!regex.test(value)) {
-      errors.Rollno = "Roll number should be numeric or can contain a letter D";
+      errors.Rollno = "Student number should be numeric or can contain a letter D";
     }
     else if (!regexi.test(value)) {
-      errors.Rollno = "Maximum length of roll number is 13 digits";
+      errors.Rollno = "Length of student should be of 7 digits";
     } else
      {
       checkStatusAll = true;
@@ -365,7 +365,7 @@ function Reg() {
               <input
                 type="text"
                 className="input_field"
-                placeholder="University Roll No."
+                placeholder="Student No."
                 name="Rollno"
                 value={Rollno}
                 onChange={(e) => setRollno(e.target.value)}

@@ -11,13 +11,13 @@ const Homepage = () => {
     <div className='image_right'>
       <div className='text'>
         <h1>
-          Hooray!
+          Registration successfull !
         </h1>
 
       </div>
         <h2 className='heading_home'>
           <br></br>
-          You've Registered Successfully.
+          For confirmation of your seat, please deposit the fee manually at the registration desks at Back Block Or CSIT Block
         </h2>
       <div className='image3'>
       </div>  
