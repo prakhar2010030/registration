@@ -85,6 +85,18 @@ function Reg() {
     setformErrorsGender(validateGender(Gender));
   };
 
+  function onChange(value) {
+    // const captcha_value = value;
+    // console.log(captcha_value);
+    if(value){
+      flag = 1;
+    }
+    else{
+      window.alert("Captcha Required!!!");
+    }
+
+
+  }
   const submit = async (e) => {
     e.preventDefault();
     setformErrorsName(validateName(Name));
@@ -148,7 +160,7 @@ function Reg() {
 
 
     // ####################################################
-    
+    console.log(flag)
     if (
       Name &&
       Rollno &&
@@ -209,6 +221,10 @@ function Reg() {
       //   })
 
     } 
+    else if(flag===0)
+    {
+      window.alert("Captcha Required!!!")
+    }
     else {
       console.log("Enter Data in all Fields");
     }
@@ -319,32 +335,7 @@ function Reg() {
     }
     return errors;
   };
-  function onChange(value) {
-    // const captcha_value = value;
-    // console.log(captcha_value);
-    if(value){
-      flag = 1;
-    }
-
-    
-    // // console.log("Captcha value:", value);
-    // axios
-    // .post(
-    //  "https://nameless-citadel-14148.herokuapp.com/api/users/captcha",
-    //   captcha_value
-    // )
-    // .then((res) => {
-    //   console.log(res.data);
-    //   // if(res.status === 200)
-    //   // {
-    //   //   Navigate("/confirm");
-    //   // }
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //   // window.alert("user already registered!!!");
-    // });
-  }
+ 
 
   return (
     <>
