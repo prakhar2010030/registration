@@ -158,7 +158,8 @@ function Reg() {
       Year &&
       Gender &&
       Residence &&
-      ReCAPTCHA
+      flag === 1
+      // ReCAPTCHA
     ) {
       const newEntry = {
         Name: Name,
