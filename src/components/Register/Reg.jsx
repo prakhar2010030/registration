@@ -305,7 +305,10 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Branch = "Branch is required!";
-    } else {
+    }else if(value ===" "){
+      errors.Branch = "select a branch";
+    }
+     else {
       checkStatusAll = true;
     }
     return errors;
@@ -315,7 +318,10 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Gender = "Gender is required!";
-    } else {
+    } else if(value ===" "){
+      errors.Gender = "must be male,female or other";
+    }
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -324,6 +330,9 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Residence = "Residence is required!";
+    }
+    else if(value ===" "){
+      errors.Residence = "must be hosteler or day-scholar";
     } else {
       checkStatusAll = true;
     }
@@ -335,6 +344,9 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Year = "Year is Required!";
+    }
+    else if(value ===" "){
+      errors.Year = "select year";
     } else {
       checkStatusAll = true;
     }
@@ -417,7 +429,7 @@ function Reg() {
                 onBlur={handleFocusBranch}
                 focused={focused.toString()}
               >
-                <option value="NULL">Branch</option>
+                <option value=" ">Branch</option>
                 <option>CSE</option>
                 <option>CSE(DS)</option>
                 <option>CSE(AI&ML)</option>
@@ -441,7 +453,7 @@ function Reg() {
                 onBlur={handleFocusGender}
                 focused={focused.toString()}
               >
-                <option value="NULL">Gender</option>
+                <option value=" ">Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="other">Other</option>
@@ -458,7 +470,7 @@ function Reg() {
                 onBlur={handleFocusYear}
                 focused={focused.toString()}
               >
-                <option value="NULL">Year</option>
+                <option value=" ">Year</option>
                 {/* <option value="1">1</option> */}
                 <option value="2">2</option>
               </select>
@@ -474,7 +486,7 @@ function Reg() {
                 onBlur={handleFocusResidence}
                 focused={focused.toString()}
               >
-                <option value="NULL">Residence</option>
+                <option value=" ">Residence</option>
                 <option value="Hosteler">Hosteler</option>
                 <option value="Day-Scholar">Day-Scholar</option>
                 {/* <option value="other">Other</option> */}
