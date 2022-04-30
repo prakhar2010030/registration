@@ -27,6 +27,7 @@ function Reg() {
   const [formErrorsBranch, setformErrorsBranch] = useState({});
   const [formErrorsYear, setformErrorsYear] = useState({});
   const [formErrorsGender, setformErrorsGender] = useState({});
+  const [formErrorsResidence, setformErrorsResidence] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
   // const reRef = useRef(null);
@@ -39,6 +40,7 @@ function Reg() {
   }, [
     formErrors,
     formErrorsGender,
+    formErrorsResidence,
     formErrorsYear,
     formErrorsBranch,
     formErrorsContactno,
@@ -82,6 +84,10 @@ function Reg() {
     setFocused(true);
     setformErrorsGender(validateGender(Gender));
   };
+  const handleFocusResidence = (e) => {
+    setFocused(true);
+    setformErrorsResidence(validateResidence(Gender));
+  };
 
   function onChangeCaptcha(value) {
     // const captcha_value = value;
@@ -99,10 +105,13 @@ function Reg() {
     setFormErrorsEmail(validateEmail(Email));
     setformErrorsContactno(validateContactno(Contactno));
     setformErrorsRoll(validateRoll(Rollno));
-    // setformErrorsBranch(validateBranch(Branch));
-    // setformErrorsYear(validateYear(Year));
-    // setformErrorsGender(validateGender(Gender));
+    setformErrorsResidence(validateResidence(Residence));
+    setformErrorsBranch(validateBranch(Branch));
+    setformErrorsYear(validateYear(Year));
+    setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
+    
+    
     
 
     //  ###################################################
@@ -219,6 +228,7 @@ function Reg() {
         window.alert("Captcha Required!!!");
       }
   };
+  
 
   const validateEmail = (value) => {
     const errors = {};
@@ -237,11 +247,14 @@ function Reg() {
     const errors = {};
     let regex = new RegExp("^[A-Za-z ]{3,29}$");
     // let regexi = new RegExp("^[A-Za-z]{3,29}$");
+    var a=value.length
     if (!value) {
       errors.Name = "Name is required!";
-    } else if (!regex.test(value)) {
+    }
+    else if (!regex.test(value)) {
       errors.Name = "Name should only include alphabets";
     }
+   
     // else if (!regexi.test(value)) {
     //   errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
     // }
@@ -307,6 +320,16 @@ function Reg() {
     }
     return errors;
   };
+  const validateResidence = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.Residence = "Residence is required!";
+    } else {
+      checkStatusAll = true;
+    }
+    return errors;
+  };
+
 
   const validateYear = (value) => {
     const errors = {};
@@ -442,13 +465,31 @@ function Reg() {
 
               <span className="error_msg">{formErrorsYear.Year}</span>
             </div>
-            <div className=" input_container">
+            <div className="input_container">
+              <select
+                className="input_field"
+                name="Residence"
+                value={Residence}
+                onChange={(e) => setResidence(e.target.value)}
+                onBlur={handleFocusResidence}
+                focused={focused.toString()}
+              >
+                <option value="NULL">Residence</option>
+                <option value="Hosteler">Hosteler</option>
+                <option value="Day-Scholar">Day-Scholar</option>
+                {/* <option value="other">Other</option> */}
+              </select>
+
+              <span className="error_msg">{formErrorsResidence.Residence}</span>
+            </div>
+            {/* <div className=" input_container">
               <div className="justify">
                 <div className="radio">
                   <span className="radio_text">Hosteler</span>
                   <input
                     type="radio"
                     className="form-check-input bg-blue"
+                    
                     name="Residence"
                     required
                     value="Hosteler"
@@ -460,6 +501,7 @@ function Reg() {
                   <input
                     type="radio"
                     className="form-check-input bg-blue "
+                    
                     name="Residence"
                     required
                     value="Day-Scholar"
@@ -467,7 +509,7 @@ function Reg() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="input_container">
               <ReCAPTCHA
                 className="captcha"
