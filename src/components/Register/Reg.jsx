@@ -86,7 +86,7 @@ function Reg() {
   };
   const handleFocusResidence = (e) => {
     setFocused(true);
-    setformErrorsResidence(validateResidence(Gender));
+    setformErrorsResidence(validateResidence(Residence));
   };
 
   function onChangeCaptcha(value) {
@@ -247,7 +247,7 @@ function Reg() {
     const errors = {};
     let regex = new RegExp("^[A-Za-z ]{3,29}$");
     // let regexi = new RegExp("^[A-Za-z]{3,29}$");
-    var a=value.length
+    // var a=value.length
     if (!value) {
       errors.Name = "Name is required!";
     }

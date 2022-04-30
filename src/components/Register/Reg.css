@@ -67,11 +67,17 @@ input::placeholder{
   width: 55%;
   background: #FFFCFC;
 border: 1px solid #777777;
+/* border: none; */
+/* border-bottom: 1px solid #777777; */
 border-radius: 0.4rem;
 font-size: 1.2rem;
 letter-spacing: -0.03em;
+padding:0  0.2rem;
 
 }
+/* .input_field:active{
+  border:none;
+} */
 .justify{
   /* width: 55%; */
   display: flex;
@@ -168,6 +174,7 @@ color: #FFFCFC;
     top:48%;
   }
 }
+
 
 
 
