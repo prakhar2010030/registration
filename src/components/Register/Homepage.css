@@ -1,7 +1,6 @@
 .container_successfull{
   width: 100%;
   display: flex;
-  /* border: 1px solid red; */
 
 }
 .image_home_left{
@@ -9,7 +8,6 @@
   height: 100vh;
   background: url("../../../public/assets/Photos/bg1.svg");
   background-size: 100% 100%;
-  /* border: 1px solid red; */
 }
 .image_home_right{
   width: 100vw;
@@ -23,30 +21,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border:1px solid black; */
 }
 .text{
-  /* display: block; */
-  /* position: absolute; */
-  /* top: 3%; */
-  /* left:21%; */
-  /* border:1px solid blue; */
+  
 
   font-size: 2.4rem;
   font-weight: 600;
-  /* text-align: center; */
 }
 .paragraph{
-  /* display: block; */
-  /* position:absolute; */
-  /* top:16%; */
   margin-top: 1rem;
   font-size: 1.2rem;
   text-align: center;
   font-weight: 600;
   margin-left: 20%;
   margin-right: 20%;
-  /* border:1px solid violet; */
 }
 .success_image{
   background: url("../../../public/assets/Photos/illustration.svg");
@@ -57,15 +45,7 @@
   background-size: contain;
   opacity: 0.3;
   margin:-23rem;
-  
-  
-  
-  
-
-  /* position: absolute; */
-  /* top:40%; */
-  /* left: 18%; */
-  /* border: 1px solid red; */
+ 
 
 }
 @media screen  and (max-width:415px){
@@ -83,16 +63,10 @@
     margin-bottom:-3rem ;
   }
   .image_home_left{
-    background-image: url(../../../public/assets/Photos/bg_m.svg);
-    background-size: 100% 65%;
-    background-repeat: no-repeat;
-    position: relative;
+   
+    display: none;
   }
-  .image_home_right{
-    position: absolute;
-    top: 60%;
-    /* height: auto; */
-  }
+  
   .paragraph{
     margin-top: 3.5rem;
     font-size: 1.8rem;
@@ -110,9 +84,14 @@
   }
   
 }
-@media screen and (max-width:314px){
+@media screen and (max-width:315px){
   html{
-font-size: 10px;
+    font-size:10px;
+  }
+}
+@media screen and (max-width:315px){
+  html{
+    font-size:8px;
   }
   
 }

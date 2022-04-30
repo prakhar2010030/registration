@@ -3,7 +3,6 @@ import "./Reg.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-// import recaptcha from "react-google-recaptcha/lib/recaptcha";
 
 function Reg() {
   const [Name, setName] = useState("");
@@ -16,7 +15,7 @@ function Reg() {
   const [Residence, setResidence] = useState("");
   const Navigate = useNavigate();
   const [flag, setFlag] = useState(0);
-  // var flag = 0;
+
   var checkStatus = false;
   var checkStatusAll = false;
   const [formErrors, setFormErrors] = useState({});
@@ -30,7 +29,6 @@ function Reg() {
   const [formErrorsResidence, setformErrorsResidence] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
-  // const reRef = useRef(null);
 
   useEffect(() => {
     // console.log(formErrors);
@@ -86,7 +84,7 @@ function Reg() {
   };
   const handleFocusResidence = (e) => {
     setFocused(true);
-    setformErrorsResidence(validateResidence(Gender));
+    setformErrorsResidence(validateResidence(Residence));
   };
 
   function onChangeCaptcha(value) {
@@ -114,52 +112,7 @@ function Reg() {
     
     
 
-    //  ###################################################
-
-    // const newEntry = {
-    //   Name: Name,
-    //   Rollno: String(Rollno),
-    //   Contactno: Number(Contactno),
-    //   Email: Email,
-    //   Branch: Branch,
-    //   Year: Number(Year),
-    //   Gender: Gender,
-    //   Residence: Residence,
-    //   // ReCAPTCHA
-    // };
-    // // if(checkStatus===true && checkStatusAll===true)
-
-    // // {console.log(newEntry);}
-    // // const token = await reRef.current.executeAsync();
-
-    // axios
-    //   .post(
-    //     "https://nameless-citadel-14148.herokuapp.com/api/users/register",
-    //     newEntry
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     if(res.status === 200)
-    //     {
-
-    //       if(flag === 1){
-    //         Navigate("/confirm");
-    //       }
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     window.alert("user already registered!!!");
-    //   });
-
-    // // axios
-    // //   .post("https://nameless-citadel-14148.herokuapp.com/api/users/captcha",ReCAPTCHA)
-    // //   .then((resp) => {
-    // //     console.log(resp.data);
-    // //   })
-
-    // ####################################################
-    // console.log(flag);
+ 
     if (
       Name &&
       Rollno &&
@@ -170,7 +123,6 @@ function Reg() {
       Gender &&
       Residence &&
       flag === 1
-      // ReCAPTCHA
     ) {
       const newEntry = {
         Name: Name,
@@ -181,7 +133,6 @@ function Reg() {
         Year: Number(Year),
         Gender: Gender,
         Residence: Residence,
-        // ReCAPTCHA
       };
       if (checkStatus === true && checkStatusAll === true) {
         // console.log(newEntry);
@@ -232,12 +183,12 @@ function Reg() {
 
   const validateEmail = (value) => {
     const errors = {};
-    let regex = new RegExp("[a-z0-9]+@akgec.ac.in");
+    let regex = new RegExp("^[a-z]{2,}[0-9]{2,}@[akgec]{5}[.][ac]{2}[.][in]{2}$");
 
     if (!value) {
       errors.Email = "Email is required!";
     } else if (!regex.test(value)) {
-      errors.Email = "This is not a valid email format!";
+      errors.Email = "Enter your college email!";
     } else {
       checkStatus = true;
     }
@@ -247,7 +198,6 @@ function Reg() {
     const errors = {};
     let regex = new RegExp("^[A-Za-z ]{3,29}$");
     // let regexi = new RegExp("^[A-Za-z]{3,29}$");
-    // var a=value.length
     if (!value) {
       errors.Name = "Name is required!";
     }
@@ -305,7 +255,10 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Branch = "Branch is required!";
-    } else {
+    }else if(value ===" "){
+      errors.Branch = "select a branch";
+    }
+     else {
       checkStatusAll = true;
     }
     return errors;
@@ -315,7 +268,10 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Gender = "Gender is required!";
-    } else {
+    } else if(value ===" "){
+      errors.Gender = "must be male,female or other";
+    }
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -324,6 +280,9 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Residence = "Residence is required!";
+    }
+    else if(value ===" "){
+      errors.Residence = "must be hosteler or day-scholar";
     } else {
       checkStatusAll = true;
     }
@@ -335,6 +294,9 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Year = "Year is Required!";
+    }
+    else if(value ===" "){
+      errors.Year = "select year";
     } else {
       checkStatusAll = true;
     }
@@ -417,7 +379,7 @@ function Reg() {
                 onBlur={handleFocusBranch}
                 focused={focused.toString()}
               >
-                <option value="NULL">Branch</option>
+                <option value=" ">Branch</option>
                 <option>CSE</option>
                 <option>CSE(DS)</option>
                 <option>CSE(AI&ML)</option>
@@ -441,7 +403,7 @@ function Reg() {
                 onBlur={handleFocusGender}
                 focused={focused.toString()}
               >
-                <option value="NULL">Gender</option>
+                <option value=" ">Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="other">Other</option>
@@ -458,7 +420,7 @@ function Reg() {
                 onBlur={handleFocusYear}
                 focused={focused.toString()}
               >
-                <option value="NULL">Year</option>
+                <option value=" ">Year</option>
                 {/* <option value="1">1</option> */}
                 <option value="2">2</option>
               </select>
@@ -474,7 +436,7 @@ function Reg() {
                 onBlur={handleFocusResidence}
                 focused={focused.toString()}
               >
-                <option value="NULL">Residence</option>
+                <option value=" ">Residence</option>
                 <option value="Hosteler">Hosteler</option>
                 <option value="Day-Scholar">Day-Scholar</option>
                 {/* <option value="other">Other</option> */}

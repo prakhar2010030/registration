@@ -25,15 +25,11 @@
   background-repeat: no-repeat;
   background-size:100% 100%;
   display: block;
-  /* justify-content: center; */
-  /* flex-wrap: wrap; */
   overflow: auto;
 
 }
 .heading{
   display: block;
-  /* justify-content: center; */
-  /* border: 1px solid red; */
   text-align: center;
   margin-top:1.2rem;
 }
@@ -47,13 +43,11 @@
 .input{
   display: block; 
   text-align: center;
-/* border:1px solid black; */
 
 
 }
 .input_container{
 display:block;
-/* border:1px solid blue; */
 margin: 1rem 1rem;
 
 }
@@ -70,17 +64,15 @@ border: 1px solid #777777;
 border-radius: 0.4rem;
 font-size: 1.2rem;
 letter-spacing: -0.03em;
+padding:0  0.2rem;
 
 }
+
 .justify{
-  /* width: 55%; */
   display: flex;
   justify-content: space-evenly;
 }
-.radio{
-  /* display: flex; */
-/* justify-content: space-between; */
-}
+
 
 .radio_text{
 
@@ -125,9 +117,7 @@ color: #FFFCFC;
   .form_container{
     flex-direction: column;
   }
-  html{
-    /* font-size: 15px; */
-  }
+  
   .image_left{
     background-image: url(../../../public/assets/Photos/bg_m.svg);
     background-size: contain;
@@ -137,7 +127,6 @@ color: #FFFCFC;
     height: fit-content;
     position: absolute;
     top:40%;
-    /* overflow: scroll; */
   }
  .heading{
    display: flex;
@@ -172,268 +161,4 @@ color: #FFFCFC;
 
 
 
-/* @media (max-width:1083px)
-{
-.heading{
-  justify-content: center;
-}
-.left_heading{
-   text-align: center;
-   font-size: 2.2rem;
-}
-}
 
-@media (max-width:953px)
-{
-  .left_heading{
-     text-align: center;
-     font-size: 2rem;
-  }
-  .justify{
-    width: 55%;
-  }
-  .input_field{
-    font-size: 1.1rem;
-  }
-  .radio_text{
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width:873px)
-{
-  .heading{
-    margin-top: -2%;
-    flex-direction: row;
-  }
-.left_heading{
-   font-size: 1.8rem;
-}
-.input_field{
-  font-size: 1.1rem;
-}
-.input{
-
-  width: auto;
-}
-.radio_text{
-  font-size: 1.2rem;
-}
-
-}
-@media (max-width:843px){
- 
-  .justify{
-    width: 60%;
-
-  }
-  .left_heading{
-    font-size: 1.7rem;
-  }
-  .heading{
-    flex-direction: row;
-  }
-}
-@media (max-width:808px)
-{
-  .heading{
-    margin-top: -6%;
-    flex-direction: row;
-  }
- .left_heading{
-   font-size: 1.7rem;
- }
- .input_field{
-   font-size: 1.1rem;
- }
-}
-
-@media (max-width:777px)
-{
-  .heading{
-    margin-top: -15%;
-    flex-direction: row;
-  }
-  .left_heading{
-    font-size: 1.5rem;
-  }
-  .input_field{
-    font-size: 1rem;
-  }
-  .justify,.input_field,.error_msg{
-    width:70%;
-  }
-  .radio_text{
-   font-size: 1.2rem;
-  }
-  .select{
-    margin-bottom: 5%;
-  }
-}
-@media (max-width:666px)
-{
-  .input_field,.justify,.error_msg{
-    width: 80%;
-  }
-}
-@media (max-width:671px)
-{
-  .left_heading{
-    font-size: 1.4rem;
-  }
-}
-@media (max-width:630px)
-{
-  .left_heading{
-    font-size: 1.3rem;
-  }
-  .select{
-    margin-bottom: 5%;
-  }
-  .input_field{
-    font-size: 1rem;
-  }
-}
-@media (max-width:391px){
-
- 
-
-}
-@media (max-width:415px){
-
-
- 
-
-
-  .form_container{
-    flex-direction: column;
-  }
-  .image_left{
-    background-image: url(../../../public/assets/Photos/bg_m.svg);
-
-  }
-  
-  .image_right{
-    
-  }
- 
-  .error_msg{
-    width: 80%;
-  }
-  
-  .heading{
-    flex-direction: column;
-  }
-  
-  .left_heading{
-    font-size:2rem ;
-
-  }
-  .radio_text{
-    text-align: left;
-  }
-  .input_field,.justify{
-    font-size: 1.3rem;
-  }
- 
-}
-
-
-@media (max-width:370px){
-  
-  .image_left{
-background-size: contain;
-  }
-  .image_right{
-    
-  }
-  
-  .left_heading{
-    font-size: 1.7rem;
-  }
-  .input_field{
-    font-size: 1.1rem;
-  }  .justify,.error_msg,.input_field{
-    width: 73%;
-  }
- 
- 
-}
-
-
-@media (max-width:351px)
-{
-  .error_msg,.justify,.input_field{
-    width: 75%;
-  }
-  .input_container{
-    margin: 3%;
-
-  }
-}
-@media (max-width:330px)
-{
-  .justify,.input_field,.error_msg{
-    width: 80%;
-  }
-  
-}
-@media (max-width:339px)
-{
-  .input_container{
-    margin: 2%;
-
-  }
-  .radio_text{
-    font-size: 1.1rem;
-  }
-  
-}
-@media (max-width:324px)
-{
-  .left_heading,.input_field,.error_msg{
-    font-size: 1.5rem;
-  }
-  .input_field,.error_msg{
-    font-size: 1rem;
-  }
-  .input_container{
-    margin: 2%;
-
-  }
-  .radio_text{
-    font-size: 1.1rem;
-  }
-
-}
-@media (max-width:306px)
-{
-  .justify,.error_msg,.input_field{
-width:84%;
-  }
- 
-}
-@media (max-width:290px)
-{
-  .error_msg,.input_field{
-width:80%;
-}
-
-.justify{
-  margin-bottom: 2%;
-  width: 80%;
-}
-
-  .left_heading{
-    font-size: 1.3rem;
-  }
-  .radio_text{
-    font-size: 1rem;
-  }
-
-}
-@media(max-width:285px){
-  .justify,.error_msg,.input_field{
-    width: 90%;
-  }
-} */
