@@ -1,10 +1,9 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Reg.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 // import recaptcha from "react-google-recaptcha/lib/recaptcha";
-
 
 function Reg() {
   const [Name, setName] = useState("");
@@ -16,8 +15,8 @@ function Reg() {
   const [Gender, setGender] = useState("");
   const [Residence, setResidence] = useState("");
   const Navigate = useNavigate();
-
-  var flag = 0;
+  const [flag, setFlag] = useState(0);
+  // var flag = 0;
   var checkStatus = false;
   var checkStatusAll = false;
   const [formErrors, setFormErrors] = useState({});
@@ -28,6 +27,7 @@ function Reg() {
   const [formErrorsBranch, setformErrorsBranch] = useState({});
   const [formErrorsYear, setformErrorsYear] = useState({});
   const [formErrorsGender, setformErrorsGender] = useState({});
+  const [formErrorsResidence, setformErrorsResidence] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [focused, setFocused] = useState(false);
   // const reRef = useRef(null);
@@ -40,6 +40,7 @@ function Reg() {
   }, [
     formErrors,
     formErrorsGender,
+    formErrorsResidence,
     formErrorsYear,
     formErrorsBranch,
     formErrorsContactno,
@@ -74,7 +75,6 @@ function Reg() {
     setformErrorsBranch(validateBranch(Branch));
   };
 
-
   const handleFocusYear = (e) => {
     setFocused(true);
     setformErrorsYear(validateYear(Year));
@@ -84,18 +84,20 @@ function Reg() {
     setFocused(true);
     setformErrorsGender(validateGender(Gender));
   };
+  const handleFocusResidence = (e) => {
+    setFocused(true);
+    setformErrorsResidence(validateResidence(Gender));
+  };
 
-  function onChange(value) {
+  function onChangeCaptcha(value) {
     // const captcha_value = value;
     // console.log(captcha_value);
-    if(value){
-      flag = 1;
-    }
-    else{
+    if (flag === 0 && value) {
+      setFlag(1);
+    } else if (flag === 0) {
       window.alert("Captcha Required!!!");
     }
-
-
+    
   }
   const submit = async (e) => {
     e.preventDefault();
@@ -103,12 +105,14 @@ function Reg() {
     setFormErrorsEmail(validateEmail(Email));
     setformErrorsContactno(validateContactno(Contactno));
     setformErrorsRoll(validateRoll(Rollno));
-    // setformErrorsBranch(validateBranch(Branch));
-    // setformErrorsYear(validateYear(Year));
-    // setformErrorsGender(validateGender(Gender));
+    setformErrorsResidence(validateResidence(Residence));
+    setformErrorsBranch(validateBranch(Branch));
+    setformErrorsYear(validateYear(Year));
+    setformErrorsGender(validateGender(Gender));
     setIsSubmit(true);
-
-
+    
+    
+    
 
     //  ###################################################
 
@@ -125,12 +129,8 @@ function Reg() {
     // };
     // // if(checkStatus===true && checkStatusAll===true)
 
-    
-
     // // {console.log(newEntry);}
     // // const token = await reRef.current.executeAsync();
-
-
 
     // axios
     //   .post(
@@ -158,9 +158,8 @@ function Reg() {
     // //     console.log(resp.data);
     // //   })
 
-
     // ####################################################
-    console.log(flag)
+    // console.log(flag);
     if (
       Name &&
       Rollno &&
@@ -184,14 +183,10 @@ function Reg() {
         Residence: Residence,
         // ReCAPTCHA
       };
-      if(checkStatus===true && checkStatusAll===true)
-
-      
-
-      {console.log(newEntry);}
+      if (checkStatus === true && checkStatusAll === true) {
+        // console.log(newEntry);
+      }
       // const token = await reRef.current.executeAsync();
-
-
 
       axios
         .post(
@@ -199,7 +194,7 @@ function Reg() {
           newEntry
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.status === 200) {
             if (flag === 1) {
               Navigate("/confirm");
@@ -219,16 +214,21 @@ function Reg() {
       //   .then((resp) => {
       //     console.log(resp.data);
       //   })
-
-    } 
-    else if(flag===0)
-    {
-      window.alert("Captcha Required!!!")
-    }
-    else {
-      console.log("Enter Data in all Fields");
-    }
+    } else if ( !( Name &&
+      Rollno &&
+        Contactno &&
+        Email &&
+        Branch &&
+        Year &&
+        Gender &&
+        Residence) &&
+        flag === 0) {
+        window.alert("Enter Data in all Fields!!!");
+      } else if(flag===0) {
+        window.alert("Captcha Required!!!");
+      }
   };
+  
 
   const validateEmail = (value) => {
     const errors = {};
@@ -238,9 +238,7 @@ function Reg() {
       errors.Email = "Email is required!";
     } else if (!regex.test(value)) {
       errors.Email = "This is not a valid email format!";
-    } 
-    else
-     {
+    } else {
       checkStatus = true;
     }
     return errors;
@@ -249,17 +247,18 @@ function Reg() {
     const errors = {};
     let regex = new RegExp("^[A-Za-z ]{3,29}$");
     // let regexi = new RegExp("^[A-Za-z]{3,29}$");
+    var a=value.length
     if (!value) {
       errors.Name = "Name is required!";
     }
-     else if (!regex.test(value)) {
+    else if (!regex.test(value)) {
       errors.Name = "Name should only include alphabets";
-    } 
+    }
+   
     // else if (!regexi.test(value)) {
     //   errors.Name = "Name should be minimum of 3 charachters and maximum of 29";
-    // } 
-    else
-     {
+    // }
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -271,12 +270,11 @@ function Reg() {
     if (!value) {
       errors.Rollno = "Student number is required!";
     } else if (!regex.test(value)) {
-      errors.Rollno = "Student number should be numeric or can contain a letter D";
-    }
-    else if (!regexi.test(value)) {
+      errors.Rollno =
+        "Student number should be numeric or can contain a letter D";
+    } else if (!regexi.test(value)) {
       errors.Rollno = "Length of student should be of 7 digits";
-    } else
-     {
+    } else {
       checkStatusAll = true;
     }
     return errors;
@@ -291,13 +289,13 @@ function Reg() {
     if (!value) {
       errors.Contactno = "Contact  number is required!";
     } else if (!regexi.test(value)) {
-      errors.Contactno = "Contact  number should only be numeric and of 10 digits";
-    } 
+      errors.Contactno =
+        "Contact  number should only be numeric and of 10 digits";
+    }
     // else if (!regexi.test(value)) {
     //   errors.Contactno = "Contact  number should be of 10 digits";
     // }
-     else
-      {
+    else {
       checkStatusAll = true;
     }
     return errors;
@@ -307,8 +305,7 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Branch = "Branch is required!";
-    }
-    else {
+    } else {
       checkStatusAll = true;
     }
     return errors;
@@ -318,24 +315,31 @@ function Reg() {
     const errors = {};
     if (!value) {
       errors.Gender = "Gender is required!";
+    } else {
+      checkStatusAll = true;
     }
-     else {
+    return errors;
+  };
+  const validateResidence = (value) => {
+    const errors = {};
+    if (!value) {
+      errors.Residence = "Residence is required!";
+    } else {
       checkStatusAll = true;
     }
     return errors;
   };
 
+
   const validateYear = (value) => {
     const errors = {};
     if (!value) {
       errors.Year = "Year is Required!";
-    } 
-    else {
+    } else {
       checkStatusAll = true;
     }
     return errors;
   };
- 
 
   return (
     <>
@@ -349,7 +353,7 @@ function Reg() {
           <form className="input">
             <div className="input_container">
               <input
-              required = "required"
+                required="required"
                 type="text"
                 className="input_field"
                 placeholder="Name"
@@ -424,7 +428,6 @@ function Reg() {
                 <option>EN</option>
                 <option>ME</option>
                 <option>CIVIL</option>
-               
               </select>
 
               <span className="error_msg">{formErrorsBranch.Branch}</span>
@@ -443,7 +446,7 @@ function Reg() {
                 <option value="Female">Female</option>
                 <option value="other">Other</option>
               </select>
-              
+
               <span className="error_msg">{formErrorsGender.Gender}</span>
             </div>
             <div className="input_container">
@@ -459,16 +462,34 @@ function Reg() {
                 {/* <option value="1">1</option> */}
                 <option value="2">2</option>
               </select>
-              
+
               <span className="error_msg">{formErrorsYear.Year}</span>
             </div>
-            <div className=" input_container">
+            <div className="input_container">
+              <select
+                className="input_field"
+                name="Residence"
+                value={Residence}
+                onChange={(e) => setResidence(e.target.value)}
+                onBlur={handleFocusResidence}
+                focused={focused.toString()}
+              >
+                <option value="NULL">Residence</option>
+                <option value="Hosteler">Hosteler</option>
+                <option value="Day-Scholar">Day-Scholar</option>
+                {/* <option value="other">Other</option> */}
+              </select>
+
+              <span className="error_msg">{formErrorsResidence.Residence}</span>
+            </div>
+            {/* <div className=" input_container">
               <div className="justify">
                 <div className="radio">
                   <span className="radio_text">Hosteler</span>
                   <input
                     type="radio"
                     className="form-check-input bg-blue"
+                    
                     name="Residence"
                     required
                     value="Hosteler"
@@ -480,22 +501,23 @@ function Reg() {
                   <input
                     type="radio"
                     className="form-check-input bg-blue "
+                    
                     name="Residence"
                     required
                     value="Day-Scholar"
                     onChange={(e) => setResidence(e.target.value)}
                   />
                 </div>
-                </div>
               </div>
+            </div> */}
             <div className="input_container">
-            <ReCAPTCHA
-            className="captcha"
-    sitekey="6LfUUagfAAAAAI4U5j4Vf7hWcuRflo8B5gXhTzuR" 
-     onChange={onChange}
-  />
+              <ReCAPTCHA
+                className="captcha"
+                sitekey="6LfUUagfAAAAAI4U5j4Vf7hWcuRflo8B5gXhTzuR"
+                onChange={onChangeCaptcha}
+              />
             </div>
-  
+
             <div className="input_container">
               <button
                 type="button"

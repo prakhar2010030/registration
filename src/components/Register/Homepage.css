@@ -40,18 +40,28 @@
   /* display: block; */
   /* position:absolute; */
   /* top:16%; */
-  margin-top: 2.5rem;
-  font-size: 1.8rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
+  margin-left: 20%;
+  margin-right: 20%;
   /* border:1px solid violet; */
 }
 .success_image{
   background: url("../../../public/assets/Photos/illustration.svg");
-  width: 70%;
+  width: 65%;
   height: 50vh;
   background-repeat: no-repeat;
+  background-size:fixed;
   background-size: contain;
+  opacity: 0.3;
+  margin:-23rem;
+  
+  
+  
+  
+
   /* position: absolute; */
   /* top:40%; */
   /* left: 18%; */
@@ -65,9 +75,12 @@
   }
   .success_image{
     background-size: contain;
+    
+    
   }
   .text{
     margin-top: 2rem;
+    margin-bottom:-3rem ;
   }
   .image_home_left{
     background-image: url(../../../public/assets/Photos/bg_m.svg);
@@ -79,6 +92,15 @@
     position: absolute;
     top: 60%;
     /* height: auto; */
+  }
+  .paragraph{
+    margin-top: 3.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 400;
+    margin-left: 20%;
+    margin-right: 20%;
+    overflow: hidden;
   }
   
 }
