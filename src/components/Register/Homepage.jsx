@@ -2,15 +2,24 @@ import React  from "react";
 import "./Homepage.css";
 // import {  useNavigate } from "react-router-dom";
 const Homepage = () => {
-  // let navigate = useNavigate();
-  // // const nav = () =>
-  // {
-  //   navigate("/");
+  
+
+  // if (window.performance) {
+  //   console.info("window.performance works fine on this browser");
   // }
-    // setTimeout(() => {
-    //   nav();
-      
-    // }, 1000);
+  // console.info(performance.performance.getEntriesByType("navigation"));
+  // if (performance.getEntriesByType("navigation") == performance.getEntriesByType("navigation").TYPE_RELOAD) {
+  //   console.info( "This page is reloaded" );
+  // } else {
+  //   console.info( "This page is not reloaded");
+  // }
+
+
+  // let data=window.performance.getEntriesByType("navigation")[0].type;
+  // if(data === "reload"){
+  //   window.location = "https://csiakgec.in/register";
+  // }
+
 
   return (
     <>
