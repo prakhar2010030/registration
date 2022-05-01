@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Homepage.css";
+import {  useNavigate } from "react-router-dom";
 const Homepage = () => {
+  let navigate = useNavigate();
+  const nav = () =>
+  {
+    navigate("/");
+  }
+    // setTimeout(() => {
+    //   nav();
+      
+    // }, 1000);
+
   return (
     <>
       <div className="container_successfull">
