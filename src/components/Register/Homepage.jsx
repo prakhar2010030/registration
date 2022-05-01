@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import "./Homepage.css";
-import {  useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 const Homepage = () => {
-  let navigate = useNavigate();
-  const nav = () =>
-  {
-    navigate("/");
-  }
+  // let navigate = useNavigate();
+  // // const nav = () =>
+  // {
+  //   navigate("/");
+  // }
     // setTimeout(() => {
     //   nav();
       
