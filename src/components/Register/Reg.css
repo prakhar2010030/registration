@@ -113,7 +113,7 @@ color: #FFFCFC;
 
 
 
-@media screen and (max-width:415px) {
+@media screen and (max-width:430px) {
   .form_container{
     flex-direction: column;
   }
@@ -126,7 +126,7 @@ color: #FFFCFC;
   .image_right{
     height: fit-content;
     position: absolute;
-    top:40%;
+    top:50%;
   }
  .heading{
    display: flex;
