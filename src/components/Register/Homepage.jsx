@@ -15,10 +15,10 @@ const Homepage = () => {
   // }
 
 
-  let data=window.performance.getEntriesByType("navigation")[0].type;
-  if(data === "reload"){
-    window.location = "https://csiakgec.in/register";
-  }
+  // let data=window.performance.getEntriesByType("navigation")[0].type;
+  // if(data === "reload"){
+  //   window.location = "https://csiakgec.in/register";
+  // }
 
 
   return (
