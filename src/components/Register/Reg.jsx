@@ -216,14 +216,14 @@ function Reg() {
   const validateRoll = (value) => {
     const errors = {};
     let regex = new RegExp("^[0-9D-d]+$");
-    let regexi = new RegExp("^[0-9D-d]{7,7}$");
+    let regexi = new RegExp("^[0-9D-d]{7,8}$");
     if (!value) {
       errors.Rollno = "Student number is required!";
     } else if (!regex.test(value)) {
       errors.Rollno =
         "Student number should be numeric or can contain a letter D";
     } else if (!regexi.test(value)) {
-      errors.Rollno = "Length of student should be of 7 digits";
+      errors.Rollno = "Length of student number should be of 7-8 digits ";
     } else {
       checkStatusAll = true;
     }
