@@ -36,8 +36,7 @@ const Homepage = () => {
                 registration desks at Back Block/CSIT Block or Basic IT Lab, 3rd
                 floor, CSIT<br></br> <b>OR</b><br></br> Pay online at UPI ID-<br></br> 9696469589@paytm(Yash
                 Jaiswal) <br></br><b>Also mention your Name and Student Number in optional
-                message/add a note to verify payment.</b><br></br> Confirmation mail will be
-                sent within 24 hours of your payment.
+                message/add a note to verify payment.</b><br></br>
               </div>
               {/* <br></br> */}
               <br></br>
